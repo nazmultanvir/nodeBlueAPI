@@ -1,18 +1,9 @@
 const express = require('express')
-var bodyParser = require('body-parser')
-var mysql      = require('mysql');
-
-
-var connection = mysql.createPool({
-  host     : 'localhost',
-  user     : 'tanvorhw_mainUser',
-  password : 'tanvir786',
-  database : 'tanvorhw_nodeApi'
-});
+const bodyParser = require('body-parser')
+const connection = require('./db');
 
 
 const app = express()
-
 app.use(bodyParser.json())
 
 
