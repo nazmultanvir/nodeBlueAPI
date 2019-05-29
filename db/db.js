@@ -1,20 +1,24 @@
 var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'tanvorhw_mainUse',
-  password : 'tanvir786',
-  database : 'tanvorhw_blueCrm'
-});
- 
 
-connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
- 
-  console.log('connected as id ' + connection.threadId);
+
+let dev = true;
+
+var connectionLive = mysql.createPool({
+  host     : 'localhost',
+  user     : 'tanvorhw_mainUser',
+  password : 'tanvir786',
+  database : 'tanvorhw_nodeApi'
 });
+
+var connectionLocal = mysql.createPool({
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'tanvorhw_bluecrm'
+});
+
+connection = dev ? connectionLocal : connectionLive
+
 
 
 module.exports = connection

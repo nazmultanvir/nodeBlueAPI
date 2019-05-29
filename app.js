@@ -1,13 +1,24 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const connection = require('./db');
+const connection = require('./db/db');
 const responseCode = require('./responseCode')
+
+const routes = require('./router/routerTemplate')
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const port = 3000
+
+
+app.use('/app', routes);
+
+
+
+app.use(function (req, res, next) {
+  responseCode(res, 404)
+})
 
 app.get('/app/agents', function (req, res) {
     let sql = "SELECT * FROM `agents`"

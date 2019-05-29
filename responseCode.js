@@ -1,4 +1,6 @@
 responseCode = (response, status, res) =>{
+
+    data = res ? res : { }
     responseStatus ={
       '200' : 'The request has succeeded.',
       '201' : 'Successful creation occurred.',
@@ -16,7 +18,7 @@ responseCode = (response, status, res) =>{
              code : status,
              message : responseStatus[status]
          },
-         response :  res
+         response : data
      }
     return response.status(status).send(finalResponse)
   }
