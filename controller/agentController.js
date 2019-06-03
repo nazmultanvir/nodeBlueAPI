@@ -19,7 +19,6 @@ exports.specificAgentInfo = (req, res) => {
         if(err){
             res.status(500).send( { error : err})
         }else{
-            // res.json(rows[0].agent_ID)
             if(rows[0] && rows[0].agent_ID ==req.params.userId){
                 responseCode(res, 200, rows[0])
             }else{
