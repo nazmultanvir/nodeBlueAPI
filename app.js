@@ -22,5 +22,4 @@ app.use('/app/agents', agentRoute);
 app.use(errorController.get404error)
 
 
-const port = 3000
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(3000)

@@ -1,6 +1,8 @@
 const responseCode = require('../responseCode')
 const connection = require('../db/db');
 
+const Agents = require('../model/Agents')
+
 exports.allAgentInfo = (req, res) => {
     let sql = "SELECT * FROM `agents`"
     connection.query(sql, (err, rows, fields)=>{
@@ -27,13 +29,13 @@ exports.specificAgentInfo = (req, res) => {
 
         }
     })
- 
+
 }
 
 
 
 exports.addAgentInfo = (request,response) =>{
-    checkNull=(data)=>{  return data ? data : null } 
+    checkNull=(data)=>{  return data ? data : null }
     let requestData = request.body;
     if(requestData){
       let name = checkNull(requestData.agent_name);
@@ -43,15 +45,10 @@ exports.addAgentInfo = (request,response) =>{
       let commission = checkNull(requestData.agent_commission);
       let phone = checkNull(requestData.agent_phone);
       let address = checkNull(requestData.agent_address)
-      if(name && latitude && longitude && phone && address){
-        let VALUES = ''
-        let sql = 'INSERT INTO `agents` (`agent_ID`, `agent_name`, `agent_latitude`, `agent_longitude`, `agent_area`, `agent_commission`, `agent_phone`, `agent_address`, `agent_join`, `agent_info_updated_on`) VALUES ('+VALUES+')'
-        console.log(sql)
-         responseCode(response, 201, requestData)
-      }else{
-        responseCode(response, 400, {}, "Required Fields are missing !")
-      }
-  
+
+      let agent = new Agents(name, latitude, longitude, area, commission, phone, address)
+      data = agent.add()
+      console.log(data)
     }else{
       responseCode(response, 400)
     }
