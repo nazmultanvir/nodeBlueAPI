@@ -26,7 +26,6 @@ exports.specificAgentInfo = (req, res) => {
             }else{
                 responseCode(res, 404)
             }
-
         }
     })
 
