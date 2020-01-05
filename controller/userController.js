@@ -42,8 +42,20 @@ exports.signup = (request,response) =>{
       let password = checkNull(requestData.password);
       let phone = checkNull(requestData.phone);
       let user = new Users(username, password, phone)
-      data = user.add()
-      responseCode(response, 200)
+      let sql = "SELECT * FROM `users` WHERE `username`="+username;
+        connection.query(sql, (err, rows, fields)=>{
+            if(err){
+                res.status(500).send( { error : err})
+            }else{
+                if(rows[0] && rows[0].agent_ID ==req.params.userId){
+                    responseCode(response, 409)
+                }else{
+                    data = user.add()
+                    responseCode(response, 200)
+                }
+            }
+        })
+
     }else{
       responseCode(response, 400)
     }

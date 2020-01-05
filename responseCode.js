@@ -10,7 +10,7 @@ responseCode = (response, status, res, customStatus) =>{
       '403' : 'Forbidden.',
       '404' : 'Not Found',
       '409' : 'Conflict.',
-      '500' : 'Internal Server Error'
+      '500' : 'Internal Server Error',
      }
 
     customStatus = customStatus ? customStatus : responseStatus[status]
