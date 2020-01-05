@@ -43,6 +43,7 @@ exports.signup = (request,response) =>{
       let phone = checkNull(requestData.phone);
       let user = new Users(username, password, phone)
       data = user.add()
+      responseCode(data, 200)
     }else{
       responseCode(response, 400)
     }
