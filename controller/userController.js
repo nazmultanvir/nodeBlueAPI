@@ -42,7 +42,7 @@ exports.signup = (request,response) =>{
       let password = checkNull(requestData.password);
       let phone = checkNull(requestData.phone);
       let user = new Users(username, password, phone)
-      let sql = "SELECT * FROM `users` WHERE `username`="+username+`"`;
+      let sql = "SELECT * FROM `users` WHERE `username`="`"${username}"`;
         connection.query(sql, (err, rows, fields)=>{
             if(err){
                 response.status(500).send( { error : err})
