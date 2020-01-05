@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 //agent route
 app.use('/app/agents', agentRoute);
+app.use('/app/users', agentRoute);
 
 
 //error controller
