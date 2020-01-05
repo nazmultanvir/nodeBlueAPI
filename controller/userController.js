@@ -47,7 +47,7 @@ exports.signup = (request,response) =>{
             if(err){
                 response.status(500).send( { error : err})
             }else{
-                if(rows[0] && rows[0].username ==username){
+                if(rows[0]){
                     responseCode(response, 409)
                 }else{
                     data = user.add()
