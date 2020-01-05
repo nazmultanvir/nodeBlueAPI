@@ -2,7 +2,8 @@ const connection = require('../db/db');
 const responseCode = require('../responseCode')
 
 module.exports = class Agents {
-    constructor (username, password, phone){
+    constructor (name, username, password, phone){
+        this.name = name
         this.username = username;
         this.phone = phone
         this.password = password
@@ -10,8 +11,8 @@ module.exports = class Agents {
     add() {
       let returnData = []
       connection.query(
-          'INSERT INTO `users` (`username`, `phone`, `password`) VALUES (?, ?, ?)',
-          [this.username, this.phone, this.password],(err, rows)=>{
+          'INSERT INTO `users` (`name`, `username`, `phone`, `password`) VALUES (?, ?, ?, ?)',
+          [this.name, this.username, this.phone, this.password],(err, rows)=>{
             if(err){
               returnData=err
             }else {

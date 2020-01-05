@@ -38,10 +38,11 @@ exports.signup = (request,response) =>{
     checkNull=(data)=>{  return data ? data : null }
     let requestData = request.body;
     if(requestData){
+      let name = checkNull(requestData.name);
       let username = checkNull(requestData.username);
       let password = checkNull(requestData.password);
       let phone = checkNull(requestData.phone);
-      let user = new Users(username, password, phone)
+      let user = new Users(name, username, password, phone)
       let sql = "SELECT * FROM `users` WHERE `username`='"+username+`'`;
         connection.query(sql, (err, rows, fields)=>{
             if(err){
