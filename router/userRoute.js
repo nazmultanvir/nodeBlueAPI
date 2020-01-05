@@ -3,7 +3,7 @@ const userController = require('../controller/userController')
 
 
 // All User Data
-routes.get('/signup', userController.signup);
+routes.post('/signup', userController.signup);
 
 // //Specific User Information
 // routes.get('/:userId', agentController.specificAgentInfo)
