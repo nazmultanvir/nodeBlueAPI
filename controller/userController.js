@@ -40,12 +40,12 @@ exports.signin = (request,response) =>{
       let username = checkNull(requestData.username);
       let password = checkNull(requestData.password);
 
-      let sql = "SELECT * FROM `users` WHERE `username`='"+username+`'`;
+      let sql = "SELECT * FROM `users` WHERE `username`='"+username+`' AND password='`+password+`'`;
         connection.query(sql, (err, rows, fields)=>{
             if(err){
                 response.status(500).send( { error : err})
             }else{
-                if(rows[0] && rows[0] == password){
+                if(rows[0]){
                     responseCode(response, 200)
                 }else{
                     responseCode(response, 404)
