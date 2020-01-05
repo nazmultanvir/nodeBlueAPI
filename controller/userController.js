@@ -33,6 +33,31 @@ const Users = require('../model/Users')
 // }
 
 
+exports.signin = (request,response) =>{
+    checkNull=(data)=>{  return data ? data : null }
+    let requestData = request.body;
+    if(requestData){
+      let username = checkNull(requestData.username);
+      let password = checkNull(requestData.password);
+
+      let sql = "SELECT * FROM `users` WHERE `username`='"+username+`'`;
+        connection.query(sql, (err, rows, fields)=>{
+            if(err){
+                response.status(500).send( { error : err})
+            }else{
+                if(rows[0] && rows[0] == password){
+                    responseCode(response, 200)
+                }else{
+                    responseCode(response, 404)
+                }
+            }
+        })
+
+    }else{
+      responseCode(response, 400)
+    }
+  }
+
 
 exports.signup = (request,response) =>{
     checkNull=(data)=>{  return data ? data : null }
