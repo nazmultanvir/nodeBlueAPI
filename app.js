@@ -9,10 +9,11 @@ const agentRoute = require('./router/agentRouter')
  const userRoute = require('./router/userRoute')
 //express and body parser
 const app = express()
+
+app.use(cors({origin: '*'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
-app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+
 
 
 
