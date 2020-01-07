@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 
 //file import
@@ -10,6 +11,8 @@ const agentRoute = require('./router/agentRouter')
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
+app.options('*', cors());
 
 
 
