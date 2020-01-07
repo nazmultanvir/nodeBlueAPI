@@ -12,7 +12,7 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-app.options('*', cors());
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
 
 
